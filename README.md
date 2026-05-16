@@ -250,6 +250,152 @@ pip install pyserial
 
 ---
 
+## 安装流程 / Installation Guide
+
+以下是推荐的基础安装流程。  
+The following is the recommended basic installation process.
+
+### 1. 从 GitHub 下载预先编译好的包 / Download the Precompiled Package from GitHub
+
+从本项目的 GitHub Releases 页面下载预先编译好的发布包。  
+Download the precompiled release package from the GitHub Releases page of this project.
+
+Project:
+
+https://github.com/JackieZ123430/BMW_G-Series_Cluster_fh6
+
+> 注意：如果当前还没有正式 Release，说明项目仍在开发中，请等待后续版本发布。  
+> Note: If there is no official Release yet, the project is still under development. Please wait for a later release.
+
+---
+
+### 2. 导入到开发板 / Upload or Import to the Development Board
+
+根据你使用的硬件版本，将对应程序导入到开发板。  
+Upload or import the correct firmware to your development board based on your hardware version.
+
+支持的开发板：
+
+Supported development boards:
+
+- Arduino Mega 开发板  
+  Arduino Mega development board
+
+- Arduino Uno 开发板  
+  Arduino Uno development board
+
+请确认你使用的版本和下载的固件匹配。  
+Please make sure the firmware version matches the development board you are using.
+
+---
+
+### 3. 按照图片接线 / Wire According to the Diagram
+
+按照项目中的接线图片连接 BMW G-Series 仪表、开发板、MCP2515 CAN 模块和 12V 电源。  
+Wire the BMW G-Series cluster, development board, MCP2515 CAN module, and 12V power supply according to the wiring diagram in the project.
+
+基本硬件连接包括：
+
+Basic hardware connections include:
+
+- BMW G-Series 液晶仪表  
+  BMW G-Series digital cluster
+
+- Arduino Mega / Uno 开发板  
+  Arduino Mega / Uno development board
+
+- MCP2515 CAN 模块  
+  MCP2515 CAN module
+
+- 12V 电源  
+  12V power supply
+
+- USB 数据线连接电脑  
+  USB cable connected to the PC
+
+> 接线错误可能导致仪表、开发板或 CAN 模块损坏。请在通电前检查电源、CAN-H、CAN-L 和 GND。  
+> Incorrect wiring may damage the cluster, development board, or CAN module. Please check power, CAN-H, CAN-L, and GND before powering on.
+
+---
+
+### 4. 设置 COM 口 / Set the COM Port
+
+将开发板连接到电脑后，在 Windows 设备管理器中查看开发板的串口号。  
+After connecting the development board to the PC, check the COM port in Windows Device Manager.
+
+例如：
+
+For example:
+
+```text
+COM4
+COM6
+COM8
+```
+
+然后在 Python 控制台程序中设置相同的 COM 口。  
+Then set the same COM port in the Python control panel.
+
+---
+
+### 5. 设置游戏内遥测接口 / Set the In-Game Telemetry Output
+
+在《极限竞速：地平线6》中打开遥测输出，并设置为：
+
+Enable telemetry output in Forza Horizon 6 and set it to:
+
+```text
+Data Out: ON
+Data Out IP Address: 127.0.0.1
+Data Out IP Port: 4444
+```
+
+推荐设置：
+
+Recommended setting:
+
+```text
+127.0.0.1
+4444
+```
+
+---
+
+### 6. 打开 Python 节点 / Start the Python Bridge Node
+
+打开 Python 桥接程序。  
+Start the Python bridge program.
+
+Example:
+
+```bash
+python fh6_to_arduino_bridge_ui.py
+```
+
+在 Python 控制台中确认：
+
+Confirm the following in the Python control panel:
+
+- UDP IP 为 `127.0.0.1`  
+  UDP IP is `127.0.0.1`
+
+- UDP Port 为 `4444`  
+  UDP Port is `4444`
+
+- COM 口和开发板一致  
+  COM port matches the development board
+
+- Baud Rate 为 `115200`  
+  Baud rate is `115200`
+
+然后点击开始桥接。  
+Then click Start to begin bridging.
+
+启动游戏后，仪表会根据游戏遥测数据进行显示。  
+After the game starts, the cluster will display information based on the game telemetry data.
+
+---
+
 ## Forza Horizon 6 设置 / Forza Horizon 6 Setup
 
 在游戏中打开遥测输出：
